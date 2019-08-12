@@ -333,22 +333,8 @@
       
         
           
-            <h1 id="1-绑定规则"><a href="#1-绑定规则" class="headerlink" title="1.绑定规则"></a>1.绑定规则</h1><h2 id="1-1-默认绑定"><a href="#1-1-默认绑定" class="headerlink" title="1.1 默认绑定"></a>1.1 默认绑定</h2><p>默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。</p>
-<pre><code>//非严格模式
-function foo() {
-    console.log(this.a);
-}
-var a = 2;
-foo(); // 2
-
-//严格模式
-function foo() {
-    &quot;use strict&quot;;
-
-    console.log(this.a);
-}
-var a = 2;
-foo(); // TypeError: this is undefined</code></pre><h2 id="1-2-隐式绑定"><a href="#1-2-隐式绑定" class="headerlink" title="1.2 隐式绑定"></a>1.2 隐式绑定</h2><p>隐式绑定规则是调用队形是否有上下文对象，或者说是否被某个对象拥有或者包含。</p>
+            <h1 id="1-绑定规则"><a href="#1-绑定规则" class="headerlink" title="1.绑定规则"></a>1.绑定规则</h1><h2 id="1-1-默认绑定"><a href="#1-1-默认绑定" class="headerlink" title="1.1 默认绑定"></a>1.1 默认绑定</h2><p>默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。 </p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//非严格模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">foo(); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//严格模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">foo(); <span class="comment">// TypeError: this is undefined</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="1-2-隐式绑定"><a href="#1-2-隐式绑定" class="headerlink" title="1.2 隐式绑定"></a>1.2 隐式绑定</h2><p>隐式绑定规则是调用队形是否有上下文对象，或者说是否被某个对象拥有或者包含。</p>
 <pre><code>function foo() {
     console.log(this.a);
 }
