@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jc-wow.github.io/2019/07/13/my-first-bolg/">
+    <link itemprop="mainEntityOfPage" href="https://jc-wow.github.io/2019/08/11/my-first-bolg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="niffler">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/13/my-first-bolg/" itemprop="url">my first bolg</a></h1>
+                <a class="post-title-link" href="/2019/08/11/my-first-bolg/" itemprop="url">《你不知道的JavaScript》———this关键字</a></h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T10:48:14+08:00">
-                2019-07-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T21:04:00+08:00">
+                2019-08-11
               </time>
             
 
@@ -333,8 +333,82 @@
       
         
           
-            <p>this is my first blog</p>
+            <h1 id="1-绑定规则"><a href="#1-绑定规则" class="headerlink" title="1.绑定规则"></a>1.绑定规则</h1><p><strong>以下代码均在chrome控制台中测试，如在node环境中测试会得到不同结果。<a href="https://www.zhihu.com/question/39596666" target="_blank" rel="noopener">是因为node.js为了实现commonjs的模块，会把代码包括在一个函数里，则变量的作用域会发生变化。</a></strong> </p>
+<h2 id="1-1-默认绑定"><a href="#1-1-默认绑定" class="headerlink" title="1.1 默认绑定"></a>1.1 默认绑定</h2><p>默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。</p>
+<pre><code>//非严格模式
+function foo() {
+    console.log(this.a);
+}
+var a = 2;
+foo(); // 2
 
+//严格模式
+function foo() {
+    &quot;use strict&quot;;
+
+    console.log(this.a);
+}
+var a = 2;
+foo(); // TypeError: this is undefined</code></pre><h2 id="1-2-隐式绑定"><a href="#1-2-隐式绑定" class="headerlink" title="1.2 隐式绑定"></a>1.2 隐式绑定</h2><p>隐式绑定规则是调用队形是否有上下文对象，或者说是否被某个对象拥有或者包含。</p>
+<pre><code>function foo() {
+    console.log(this.a);
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+obj.foo(); //2
+
+//对象属性引用链中只有最顶层或者说最后一层会影响调用位置。
+function foo() {
+    console.log(this.a);
+}
+var obj2 = {
+    a: 42,
+    foo: foo
+};
+var obj1 = {
+    a:2,
+    obj2: obj2
+};
+obj1.obj2.foo(); //42</code></pre><h3 id="1-2-1-隐式丢失"><a href="#1-2-1-隐式丢失" class="headerlink" title="1.2.1 隐式丢失"></a>1.2.1 隐式丢失</h3><p>一个常见的this隐式绑定问题就是隐式绑定的函数会丢失绑定对象，也就是说他会应用默认绑定，从而把this绑定到全局对象或者undefined上，取决于是否是严格模式。如下代码：</p>
+<pre><code>//虽然bar是obj.foo的一个引用，但实际上它引用的是foo函数本身，因此此时的bar()其实是一个不带任何修饰的函数调用，因此应用了默认绑定。
+function foo() {
+    console.log(this.a);
+}
+var obj = {
+    a: 2,
+    foo: foo
+}
+var bar = obj.foo; //函数别名
+var a = &quot;oops, global&quot;; //a是全局对象的属性
+bar(); //&quot;oops, global&quot;
+
+//参数传递其实就是一种隐式赋值，因此我们传入函数时也会被隐式赋值，结果和上一个例子相同
+function foo() {
+    console.log( this.a );
+}
+function doFoo(fn) {
+    // fn 其实引用的是 foo
+    fn(); // &lt;-- 调用位置！ 
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+var a = &quot;oops, global&quot;; // a是全局对象的属性
+doFoo(obj.foo); // &quot;oops, global&quot;
+
+//如果把函数传入语言内置的函数而不是自己声明的函数，效果也相同
+function foo() {
+    console.log(this.a);
+}
+var obj = {
+    a: 2,
+    foo: foo
+}
+var a = &quot;oops, global&quot; // a是全局对象的属性
+setTimeout(obj.foo, 100); // &quot;oops, global&quot;</code></pre><h2 id="1-3-显式绑定"><a href="#1-3-显式绑定" class="headerlink" title="1.3 显式绑定"></a>1.3 显式绑定</h2>
           
         
       
@@ -423,6 +497,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
