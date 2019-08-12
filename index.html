@@ -370,7 +370,7 @@ var obj1 = {
     a:2,
     obj2: obj2
 };
-obj1.obj2.foo(); //42</code></pre><h3 id="1-2-1-隐式丢失"><a href="#1-2-1-隐式丢失" class="headerlink" title="1.2.1 隐式丢失"></a>1.2.1 隐式丢失</h3><p>一个常见的this隐式绑定问题就是隐式绑定的函数会丢失绑定对象，也就是说他会应用默认绑定，从而把this绑定到全局对象或者undefined上，取决于是否是严格模式。如下代码：</p>
+obj1.obj2.foo(); //42</code></pre><h3 id="1-2-1-隐式丢失"><a href="#1-2-1-隐式丢失" class="headerlink" title="1.2.1 隐式丢失"></a>1.2.1 隐式丢失</h3><p>一个常见的this隐式绑定问题就是隐式绑定的函数会丢失绑定对象，也就是说他会应用默认绑定，从而把this绑定到全局对象或者undefined上，取决于是否是严格模式。</p>
 <pre><code>//虽然bar是obj.foo的一个引用，但实际上它引用的是foo函数本身，因此此时的bar()其实是一个不带任何修饰的函数调用，因此应用了默认绑定。
 function foo() {
     console.log(this.a);

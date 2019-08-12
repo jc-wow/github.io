@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。 //非严格模式 function foo() {     console.log(this.a); } var a = 2; foo(); // 2  //严格模式 function foo() {     &amp;quot;use strict&amp;quot;;      console.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T08:19:25.120Z">
+<meta property="og:updated_time" content="2019-08-12T08:22:35.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《你不知道的JavaScript》——this关键字">
 <meta name="twitter:description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。 //非严格模式 function foo() {     console.log(this.a); } var a = 2; foo(); // 2  //严格模式 function foo() {     &amp;quot;use strict&amp;quot;;      console.">
@@ -367,7 +367,7 @@ var obj1 = {
     a:2,
     obj2: obj2
 };
-obj1.obj2.foo(); //42</code></pre><h3 id="1-2-1-隐式丢失"><a href="#1-2-1-隐式丢失" class="headerlink" title="1.2.1 隐式丢失"></a>1.2.1 隐式丢失</h3><p>一个常见的this隐式绑定问题就是隐式绑定的函数会丢失绑定对象，也就是说他会应用默认绑定，从而把this绑定到全局对象或者undefined上，取决于是否是严格模式。如下代码：</p>
+obj1.obj2.foo(); //42</code></pre><h3 id="1-2-1-隐式丢失"><a href="#1-2-1-隐式丢失" class="headerlink" title="1.2.1 隐式丢失"></a>1.2.1 隐式丢失</h3><p>一个常见的this隐式绑定问题就是隐式绑定的函数会丢失绑定对象，也就是说他会应用默认绑定，从而把this绑定到全局对象或者undefined上，取决于是否是严格模式。</p>
 <pre><code>//虽然bar是obj.foo的一个引用，但实际上它引用的是foo函数本身，因此此时的bar()其实是一个不带任何修饰的函数调用，因此应用了默认绑定。
 function foo() {
     console.log(this.a);
