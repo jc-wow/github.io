@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="JavaScript,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="we walk by faith, not by sight">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="https://jc-wow.github.io/index.html">
+<meta name="description" content="1.类1.1 构造函数类实例是由一个特殊的类方法构造的，这个方法名通常和类名相同，被称为构造函数。这个方法的任务就是初始化实例需要的所有信息（状态）。类构造函数属于类，而且通常和类同名。此外，构造函数大多需要用new来调，这样语言 引擎才知道你想要构造一个新的类实例。   123456789101112131415class CoolGuy &amp;#123;    specialTrick = no">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《你不知道的JavaScript》——类和原型">
+<meta property="og:url" content="https://jc-wow.github.io/2019/08/12/《你不知道的JavaScript》——类/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="we walk by faith, not by sight">
+<meta property="og:description" content="1.类1.1 构造函数类实例是由一个特殊的类方法构造的，这个方法名通常和类名相同，被称为构造函数。这个方法的任务就是初始化实例需要的所有信息（状态）。类构造函数属于类，而且通常和类同名。此外，构造函数大多需要用new来调，这样语言 引擎才知道你想要构造一个新的类实例。   123456789101112131415class CoolGuy &amp;#123;    specialTrick = no">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-26T09:23:14.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
-<meta name="twitter:description" content="we walk by faith, not by sight">
+<meta name="twitter:title" content="《你不知道的JavaScript》——类和原型">
+<meta name="twitter:description" content="1.类1.1 构造函数类实例是由一个特殊的类方法构造的，这个方法名通常和类名相同，被称为构造函数。这个方法的任务就是初始化实例需要的所有信息（状态）。类构造函数属于类，而且通常和类同名。此外，构造函数大多需要用new来调，这样语言 引擎才知道你想要构造一个新的类实例。   123456789101112131415class CoolGuy &amp;#123;    specialTrick = no">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://jc-wow.github.io/">
+  <link rel="canonical" href="https://jc-wow.github.io/2019/08/12/《你不知道的JavaScript》——类/">
 
 
 
 
 
-  <title></title>
+  <title>《你不知道的JavaScript》——类和原型 | </title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/12/《你不知道的JavaScript》——类/" itemprop="url">《你不知道的JavaScript》——类和原型</a></h1>
+          <h1 class="post-title" itemprop="name headline">《你不知道的JavaScript》——类和原型</h1>
         
 
         <div class="post-meta">
@@ -331,9 +330,7 @@
       
 
       
-        
-          
-            <hr>
+        <hr>
 <h1 id="1-类"><a href="#1-类" class="headerlink" title="1.类"></a>1.类</h1><h2 id="1-1-构造函数"><a href="#1-1-构造函数" class="headerlink" title="1.1 构造函数"></a>1.1 构造函数</h2><p>类实例是由一个特殊的类方法构造的，这个方法名通常和类名相同，被称为构造函数。这个方法的任务就是初始化实例需要的所有信息（状态）。类构造函数属于类，而且通常和类同名。此外，构造函数大多需要用new来调，这样语言 引擎才知道你想要构造一个新的类实例。  </p>
 <pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoolGuy</span> </span>&#123;</span><br><span class="line">    specialTrick = nothing;</span><br><span class="line"> </span><br><span class="line">    CoolGuy(trick) &#123;</span><br><span class="line">        <span class="comment">//构造函数</span></span><br><span class="line">        specialTrick = trick;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    showOff() &#123;</span><br><span class="line">        output(<span class="string">"Here'smy trick:"</span>, specialtrick)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//调用类构造函数生成一个CoolGuy实例：</span></span><br><span class="line">Joe = <span class="keyword">new</span> CoolGuy(<span class="string">"jumping rope);</span></span><br><span class="line"><span class="string">Joe.showOff();</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="1-2-类的继承"><a href="#1-2-类的继承" class="headerlink" title="1.2 类的继承"></a>1.2 类的继承</h2><h3 id="1-2-1-多态"><a href="#1-2-1-多态" class="headerlink" title="1.2.1 多态"></a>1.2.1 多态</h3><p>在许多语言中可以使用super带表示继承，它的涵义是超类（superclass），表示当前类的父类/祖先类。<br>多态的另一个方面是，在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义。<br>子类得到的仅仅是继承自父类行为的一份副本。子类对继承到的一个 方法进行“重写”，不会影响父类中的方法，这两个方法互不影响，因此才能使用相对多态引用访问父类中的方法（如果重写会影响父类的方法，那重写之后父类中的原始方法就 不存在了，自然也无法引用）。  </p>
 <h1 id="2-原型"><a href="#2-原型" class="headerlink" title="2.原型"></a>2.原型</h1><h2 id="2-1-prototype"><a href="#2-1-prototype" class="headerlink" title="2.1 [[prototype]]"></a>2.1 [[prototype]]</h2><p>JavaScript 中的对象有一个特殊的 [[Prototype]] 内置属性，其实就是对于其他对象的引 用。几乎所有的对象在创建时 [[Prototype]] 属性都会被赋予一个非空的值。  </p>
@@ -357,8 +354,6 @@ var a = new Foo( &quot;a&quot; );
 var b = new Foo( &quot;b&quot; );
 a.myName(); // &quot;a&quot; 
 b.myName(); // &quot;b&quot;</code></pre>
-          
-        
       
     </div>
     
@@ -373,140 +368,37 @@ b.myName(); // &quot;b&quot;</code></pre>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jc-wow.github.io/2019/08/11/《你不知道的JavaScript》—this关键字/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="niffler">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/11/《你不知道的JavaScript》—this关键字/" itemprop="url">《你不知道的JavaScript》——this关键字</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T21:04:00+08:00">
-                2019-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i>
+ JavaScript</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <hr>
-<h1 id="1-绑定规则"><a href="#1-绑定规则" class="headerlink" title="1.绑定规则"></a>1.绑定规则</h1><h2 id="1-1-默认绑定"><a href="#1-1-默认绑定" class="headerlink" title="1.1 默认绑定"></a>1.1 默认绑定</h2><p>默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。 </p>
-<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//非严格模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">foo(); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//严格模式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">foo(); <span class="comment">// TypeError: this is undefined</span></span><br></pre></td></tr></table></figure></code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/11/《你不知道的JavaScript》—this关键字/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/11/《你不知道的JavaScript》—this关键字/" rel="next" title="《你不知道的JavaScript》——this关键字">
+                <i class="fa fa-chevron-left"></i> 《你不知道的JavaScript》——this关键字
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -516,10 +408,11 @@ b.myName(); // &quot;b&quot;</code></pre>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -527,6 +420,10 @@ b.myName(); // &quot;b&quot;</code></pre>
 
 
           
+
+  
+
+
 
         </div>
         
@@ -547,8 +444,17 @@ b.myName(); // &quot;b&quot;</code></pre>
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -599,6 +505,22 @@ b.myName(); // &quot;b&quot;</code></pre>
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-类"><span class="nav-text">1.类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-构造函数"><span class="nav-text">1.1 构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-类的继承"><span class="nav-text">1.2 类的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-多态"><span class="nav-text">1.2.1 多态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-原型"><span class="nav-text">2.原型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-prototype"><span class="nav-text">2.1 [[prototype]]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-属性设置和屏蔽"><span class="nav-text">2.2 属性设置和屏蔽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-“类”"><span class="nav-text">2.3 “类”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-“类函数”"><span class="nav-text">2.3.1 “类函数”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-“构造函数”"><span class="nav-text">2.3.2 “构造函数”</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -733,6 +655,10 @@ b.myName(); // &quot;b&quot;</code></pre>
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
