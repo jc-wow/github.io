@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。">
+<meta name="description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript中asnyc的一点理解">
 <meta property="og:url" content="https://jc-wow.github.io/2019/09/11/javascript中asnyc的一点理解/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。">
+<meta property="og:description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-11T10:11:11.799Z">
+<meta property="og:updated_time" content="2019-09-11T13:58:51.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript中asnyc的一点理解">
-<meta name="twitter:description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。">
+<meta name="twitter:description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。">
 
 
 
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-11T18:11:11+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-11T21:58:51+08:00">
                 2019-09-11
               </time>
             
@@ -342,8 +342,25 @@
       
 
       
-        <p>工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。</p>
+        <p>工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。  </p>
+<a id="more"></a>    
+<pre><code>````javascript
+以下是伪代码：
+asnyc function getAllData() {
+    await ajaxRequest1();
+    ajaxRequest2();
+}
 
+function ajaxRequest1() {
+    return new Promise(resolve, reject) {
+        post(); //请求接口
+        resolve();    
+    }
+}
+
+function ajaxRequest2() {
+    post(); //请求接口
+}</code></pre>
       
     </div>
     
