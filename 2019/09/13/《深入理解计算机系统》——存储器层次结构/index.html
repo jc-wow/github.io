@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.存储技术1.1随机访问存储器随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。    | |每位晶体管数|相对访问时间|持续的？|敏感的？|相对花费|应用|   |:–:|:–:|:–:|:–:|:–:|:–:|:–:|   |SRAM|6|1|是|否|1000|高速缓存存储器| |DRA">
+<meta name="description" content="1.存储技术1.1随机访问存储器随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。">
 <meta name="keywords" content="读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解计算机系统》——存储器层次结构">
 <meta property="og:url" content="https://jc-wow.github.io/2019/09/13/《深入理解计算机系统》——存储器层次结构/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.存储技术1.1随机访问存储器随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。    | |每位晶体管数|相对访问时间|持续的？|敏感的？|相对花费|应用|   |:–:|:–:|:–:|:–:|:–:|:–:|:–:|   |SRAM|6|1|是|否|1000|高速缓存存储器| |DRA">
+<meta property="og:description" content="1.存储技术1.1随机访问存储器随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-13T09:06:56.516Z">
+<meta property="og:updated_time" content="2019-09-13T09:12:16.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解计算机系统》——存储器层次结构">
-<meta name="twitter:description" content="1.存储技术1.1随机访问存储器随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。    | |每位晶体管数|相对访问时间|持续的？|敏感的？|相对花费|应用|   |:–:|:–:|:–:|:–:|:–:|:–:|:–:|   |SRAM|6|1|是|否|1000|高速缓存存储器| |DRA">
+<meta name="twitter:description" content="1.存储技术1.1随机访问存储器随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。">
 
 
 
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-13T17:06:56+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-13T17:12:16+08:00">
                 2019-09-13
               </time>
             
@@ -364,14 +364,40 @@
       
 
       
-        <a id="more"></a>  
-<h1 id="1-存储技术"><a href="#1-存储技术" class="headerlink" title="1.存储技术"></a>1.存储技术</h1><h2 id="1-1随机访问存储器"><a href="#1-1随机访问存储器" class="headerlink" title="1.1随机访问存储器"></a>1.1随机访问存储器</h2><p>随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。  </p>
-<ul>
-<li>| |每位晶体管数|相对访问时间|持续的？|敏感的？|相对花费|应用|  </li>
-<li>|:–:|:–:|:–:|:–:|:–:|:–:|:–:|  </li>
-<li>|SRAM|6|1<em>|是|否|1000</em>|高速缓存存储器|</li>
-<li>|DRAM|1|10<em>|否|是|1</em>|主存，帧缓冲区|  </li>
-</ul>
+        <h1 id="1-存储技术"><a href="#1-存储技术" class="headerlink" title="1.存储技术"></a>1.存储技术</h1><h2 id="1-1随机访问存储器"><a href="#1-1随机访问存储器" class="headerlink" title="1.1随机访问存储器"></a>1.1随机访问存储器</h2><p>随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。</p>
+<a id="more"></a>  
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">每位晶体管数</th>
+<th align="center">相对访问时间</th>
+<th align="center">持续的？</th>
+<th align="center">敏感的？</th>
+<th align="center">相对花费</th>
+<th align="center">应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SRAM</td>
+<td align="center">6</td>
+<td align="center">1*</td>
+<td align="center">是</td>
+<td align="center">否</td>
+<td align="center">1000*</td>
+<td align="center">高速缓存存储器</td>
+</tr>
+<tr>
+<td align="center">DRAM</td>
+<td align="center">1</td>
+<td align="center">10*</td>
+<td align="center">否</td>
+<td align="center">是</td>
+<td align="center">1*</td>
+<td align="center">主存，帧缓冲区</td>
+</tr>
+</tbody></table>
 
       
     </div>
