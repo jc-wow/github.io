@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="1.存储技术1.1随机访问存储器1.1.1RAM随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。SRAM用来作为高速缓存存储器，DRAM用来作为主存以及图形系统的帧缓冲区。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-13T12:34:17.895Z">
+<meta property="og:updated_time" content="2019-09-15T10:57:09.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解计算机系统》——存储器层次结构">
 <meta name="twitter:description" content="1.存储技术1.1随机访问存储器1.1.1RAM随机访问存储器（Random-Access Memory, RAM）分为两类：静态的和动态的，静态的（SRAM）比动态的（DRAM）更快，但也贵的多。SRAM用来作为高速缓存存储器，DRAM用来作为主存以及图形系统的帧缓冲区。">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-13T20:34:17+08:00">
-                2019-09-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T18:57:09+08:00">
+                2019-09-15
               </time>
             
           </span>
@@ -388,7 +388,36 @@
 </tr>
 </tbody></table>
 <h3 id="1-1-2非易失性存储器"><a href="#1-1-2非易失性存储器" class="headerlink" title="1.1.2非易失性存储器"></a>1.1.2非易失性存储器</h3><p>如果断电，DRAM和SRAM会丢失它们的信息，从这个意义上说，它们是易失的。另一种存储器叫非易失存储器，也就是ROM（Read-Only Memory,ROM)。闪存（falsh memory）是一类非易失性存储器，SSD的存储介质就是闪存。存储在ROM设备中的程序叫固件（firmware），例如PC的BIOS，和显卡、磁盘中的驱动控制器等。 </p>
-<h2 id="1-2磁盘存储"><a href="#1-2磁盘存储" class="headerlink" title="1.2磁盘存储"></a>1.2磁盘存储</h2>
+<h2 id="1-2磁盘存储"><a href="#1-2磁盘存储" class="headerlink" title="1.2磁盘存储"></a>1.2磁盘存储</h2><p>主机总线适配器将一个或者多个磁盘连接到I/O总线，两个最常用的磁盘接口是SCSI和SATA，SCSI比SATA驱动器更快但也更贵，SCSI主机总线适配器支持多个磁盘驱动器，SATA支持一个驱动器。<br>I/O总线基于外围设备互联（PCI）总线，PCI模型中，系统中的所有设备共享总线，一个时刻只能有一台设备访问这些线路。现代系统中，共享的PCI总线已经被PCIe总线取代，PCIe是一组高速串行、通过开关连接的点到点链路。  </p>
+<h2 id="1-3固态硬盘"><a href="#1-3固态硬盘" class="headerlink" title="1.3固态硬盘"></a>1.3固态硬盘</h2><table>
+<thead>
+<tr>
+<th align="center">读</th>
+<th align="center">写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">顺序读吞吐量-550MB/s</td>
+<td align="center">顺序写吞吐量-470MB/s</td>
+</tr>
+<tr>
+<td align="center">随机读吞吐量-8000IOPS</td>
+<td align="center">随机写吞吐量-74000IOPS</td>
+</tr>
+<tr>
+<td align="center">随机读吞吐量-365MB/s</td>
+<td align="center">随机写吞吐量-303MB/s</td>
+</tr>
+<tr>
+<td align="center">平均顺序读访问时间50us</td>
+<td align="center">平均随机写访问时间60us</td>
+</tr>
+<tr>
+<td align="center">SSD读比写要快是因为一个闪存由B个块的序列组成，每个块由P页组成。数据是由页为单位读写，只有一页所属的块整个被擦除后才能写这一页。</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+
       
     </div>
     
@@ -561,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-存储技术"><span class="nav-text">1.存储技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1随机访问存储器"><span class="nav-text">1.1随机访问存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1RAM"><span class="nav-text">1.1.1RAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2非易失性存储器"><span class="nav-text">1.1.2非易失性存储器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2磁盘存储"><span class="nav-text">1.2磁盘存储</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-存储技术"><span class="nav-text">1.存储技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1随机访问存储器"><span class="nav-text">1.1随机访问存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1RAM"><span class="nav-text">1.1.1RAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2非易失性存储器"><span class="nav-text">1.1.2非易失性存储器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2磁盘存储"><span class="nav-text">1.2磁盘存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3固态硬盘"><span class="nav-text">1.3固态硬盘</span></a></li></ol></li></ol></div>
             
 
           </div>
