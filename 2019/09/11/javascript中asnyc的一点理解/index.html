@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-15T13:04:50.673Z">
+<meta property="og:updated_time" content="2019-10-15T13:22:53.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript中asnyc的一点理解">
 <meta name="twitter:description" content="工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T21:04:50+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T21:22:53+08:00">
                 2019-10-15
               </time>
             
@@ -334,7 +334,7 @@
       
         <p>工作中遇见了一个用到asnyc的小问题，需求是要按次序请求两个Ajax接口。由于是第一次使用asnyc，顺便把解决过程中遇到的问题纪录下来。  </p>
 <a id="more"></a>
-<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下是伪代码：</span></span><br><span class="line">asnyc <span class="function"><span class="keyword">function</span> <span class="title">getAllData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> ajaxRequest1();</span><br><span class="line">    ajaxRequest2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxRequest1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        post(); <span class="comment">//请求接口</span></span><br><span class="line">        resolve();    </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxRequest2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    post(); <span class="comment">//请求接口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>1.当执行asnyc函数的时候，一旦遇到await就会先返回，等到异步操作完成，再执行函数体后面的语句。因此执行getAllData函数的时候遇到await先执行完ajaxRequest1函数，然后再执行ajaxRequest2函数，这样就实现了异步。<br>2.await命令后通常是Promise对象，返回该对象的结果。因此ajaxRequest1()的返回值应该为Promise对象。<br>3.Promise函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject，它们是两个函数，由JavaScript引擎提供，不用自己部署，直接调用。因此，只有调用了resolve函数，Promise函数的resolved状态才会传给getAllData函数await之后的Promise对象的返回值中。<br>赛季刚开始经过思考刚开始就<br>上课了给介绍了几个</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下是伪代码：</span></span><br><span class="line">asnyc <span class="function"><span class="keyword">function</span> <span class="title">getAllData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> ajaxRequest1();</span><br><span class="line">    ajaxRequest2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxRequest1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        post(); <span class="comment">//请求接口</span></span><br><span class="line">        resolve();    </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxRequest2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    post(); <span class="comment">//请求接口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre><p>1.当执行asnyc函数的时候，一旦遇到await就会先返回，等到异步操作完成，再执行函数体后面的语句。因此执行getAllData函数的时候遇到await先执行完ajaxRequest1函数，然后再执行ajaxRequest2函数，这样就实现了异步。<br>2.await命令后通常是Promise对象，返回该对象的结果。因此ajaxRequest1()的返回值应该为Promise对象。<br>3.Promise函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject，它们是两个函数，由JavaScript引擎提供，不用自己部署，直接调用。因此，只有调用了resolve函数，Promise函数的resolved状态才会传给getAllData函数await之后的Promise对象的返回值中。  </p>
 
       
     </div>
@@ -453,7 +453,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
