@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="positionposition属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-15T14:56:19.490Z">
+<meta property="og:updated_time" content="2019-10-15T15:03:51.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习css布局">
 <meta name="twitter:description" content="positionposition属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T22:56:19+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T23:03:51+08:00">
                 2019-10-15
               </time>
             
@@ -334,34 +334,56 @@
       
         <h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p>position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。  </p>
 <a id="more"></a>  
-<p><strong>static：无特殊定位，对象遵循正常文档流。top、right、bottom、left等属性不会被应用</strong>  </p>
-<pre><code class="html">    <span class="meta">&lt;!DOCTYPE html&gt;</span>
-    <span class="tag">&lt;<span class="name">style</span>&gt;</span>
-        #first {
-            position: static;
-            border: 2px solid red;
-            height: 100px;
-            width: 100px;
-            top: 500px;
-            left: 500px;
-        }
+<p><strong>static：无特殊定位，对象遵循正常文档流。top、right、bottom、left等属性不会被应用</strong></p>
+<pre><code class="html"><span class="meta">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="name">style</span>&gt;</span>
+    #first {
+        position: static;
+        border: 2px solid red;
+        height: 100px;
+        width: 100px;
+        top: 500px;
+        left: 500px;
+    }
 
-        #second {
-            position: relative;
-            border: 2px solid blue;
-            height: 100px;
-            width: 100px;
-            left: 100px;
-        }
-    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>
-    <span class="tag">&lt;<span class="name">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span>first<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"second"</span>&gt;</span>second<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
-    <span class="tag">&lt;/<span class="name">html</span>&gt;</span>
-```  
+    #second {
+        position: relative;
+        border: 2px solid blue;
+        height: 100px;
+        width: 100px;
+        left: 100px;
+    }
+<span class="tag">&lt;/<span class="name">style</span>&gt;</span>
+<span class="tag">&lt;<span class="name">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span>first<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"second"</span>&gt;</span>second<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">html</span>&gt;</span></code></pre>
+<!DOCTYPE html>
+<style>
+    #first {
+        position: static;
+        border: 2px solid red;
+        height: 100px;
+        width: 100px;
+        top: 500px;
+        left: 500px;
+    }
 
-</code></pre>
+    #second {
+        position: relative;
+        border: 2px solid blue;
+        height: 100px;
+        width: 100px;
+        left: 100px;
+    }
+</style>
+
+<body>
+    <div id="first">first</div>
+    <div id="second">second</div>
+</body>
+
 
       
     </div>
