@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;不断总结工作和学习过程中遇到的有关css问题。 1.position&amp;emsp;&amp;emsp;position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-17T14:56:41.876Z">
+<meta property="og:updated_time" content="2019-10-18T09:22:14.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习css布局">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;不断总结工作和学习过程中遇到的有关css问题。 1.position&amp;emsp;&amp;emsp;position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-17T22:56:41+08:00">
-                2019-10-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-18T17:22:14+08:00">
+                2019-10-18
               </time>
             
           </span>
@@ -345,6 +345,17 @@
 <iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/8mfg9w4n/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
 
 <p>&emsp;&emsp;<strong>fixed固定定位和absolute一样都脱离了文档流，即便页面滚动，他还是会停留在相同位置。和ralative一样top/left/bottom/right四个属性都可用。</strong><br>&emsp;&emsp;<strong>sticky定位是relative和fixed的混合，在视窗之内表现为ralative，超出视窗为fixed，必须指定top/left/bottom/right四个属性之一，sticky才生效，否则和relative相同。</strong>  </p>
+<h1 id="2-元素居中"><a href="#2-元素居中" class="headerlink" title="2.元素居中"></a>2.元素居中</h1><h2 id="2-1-行内元素"><a href="#2-1-行内元素" class="headerlink" title="2.1 行内元素"></a>2.1 行内元素</h2><p>&emsp;&emsp;常见行内元素为a/img/input/span或者文本、超链接等，此类情况通常给父元素设置<code>text-align:center</code>来实现。</p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/hboy2m7e/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+<h2 id="2-2-块级元素水平居中"><a href="#2-2-块级元素水平居中" class="headerlink" title="2.2 块级元素水平居中"></a>2.2 块级元素水平居中</h2><h3 id="2-2-1-块的宽度固定"><a href="#2-2-1-块的宽度固定" class="headerlink" title="2.2.1 块的宽度固定"></a>2.2.1 块的宽度固定</h3><p>&emsp;&emsp;宽度固定的块级元素，只需要将<code>left-margin</code>和<code>right-margin</code>设置为auto。</p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/f8q2ns4j/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+<h3 id="2-2-2-块的宽度不固定"><a href="#2-2-2-块的宽度不固定" class="headerlink" title="2.2.2 块的宽度不固定"></a>2.2.2 块的宽度不固定</h3><p>&emsp;&emsp;<br>**方法1：设置table<br>给要居中的块级元素设置<code>display:table</code>，然后将<code>left-margin</code>和<code>right-margin</code>设置为auto。</p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/bvdrxgue/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+
+
 
       
     </div>
@@ -522,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-position"><span class="nav-text">1.position</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-position"><span class="nav-text">1.position</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-元素居中"><span class="nav-text">2.元素居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-行内元素"><span class="nav-text">2.1 行内元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-块级元素水平居中"><span class="nav-text">2.2 块级元素水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-块的宽度固定"><span class="nav-text">2.2.1 块的宽度固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-块的宽度不固定"><span class="nav-text">2.2.2 块的宽度不固定</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
