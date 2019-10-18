@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;不断总结工作和学习过程中遇到的有关css问题。 1.position&amp;emsp;&amp;emsp;position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-18T09:31:01.574Z">
+<meta property="og:updated_time" content="2019-10-18T14:53:26.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习css布局">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;不断总结工作和学习过程中遇到的有关css问题。 1.position&amp;emsp;&amp;emsp;position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-18T17:31:01+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-18T22:53:26+08:00">
                 2019-10-18
               </time>
             
@@ -353,6 +353,16 @@
 
 <h3 id="2-2-2-块的宽度不固定"><a href="#2-2-2-块的宽度不固定" class="headerlink" title="2.2.2 块的宽度不固定"></a>2.2.2 块的宽度不固定</h3><p><strong>方法1：设置table</strong><br>&emsp;&emsp;给要居中的块级元素设置<code>display:table</code>，然后将<code>left-margin</code>和<code>right-margin</code>设置为auto。</p>
 <iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/bvdrxgue/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+<p><strong>方法2：flex布局</strong><br>&emsp;&emsp;将块状元素的父元素设置为<code>display:flex,justify-content:center</code>。</p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/v4mfnqw9/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+<p><strong>方法3：设置<code>display:inline-block</code></strong><br>&emsp;&emsp;把块状元素的父元素设置为<code>text-align:center</code>，子元素设置为<code>display:inline-block</code>。</p>
+<blockquote>
+<p>  inline可以将块级元素放到一行，变为行内元素，但是不能设置高度；<br>    incline-block也是将块级元素放到一行，即具有行内元素的性质，<br>    也具有块状元素的性值，因此可以为块设置高度。</p>
+</blockquote>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/5p46afkw/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
 
 
 
