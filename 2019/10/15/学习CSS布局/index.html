@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;不断总结工作和学习过程中遇到的有关css问题。 1.position&amp;emsp;&amp;emsp;position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-18T15:57:52.837Z">
+<meta property="og:updated_time" content="2019-10-19T01:27:17.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习css布局">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;不断总结工作和学习过程中遇到的有关css问题。 1.position&amp;emsp;&amp;emsp;position属性用于指定一个元素在文档中的定位方式，其关键字有五个，static、relative、absolute、sticky、fixed。">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-18T23:57:52+08:00">
-                2019-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-19T09:27:17+08:00">
+                2019-10-19
               </time>
             
           </span>
@@ -366,8 +366,21 @@
 <h1 id="2-垂直居中"><a href="#2-垂直居中" class="headerlink" title="2.垂直居中"></a>2.垂直居中</h1><h2 id="2-1-多行文本垂直居中"><a href="#2-1-多行文本垂直居中" class="headerlink" title="2.1 多行文本垂直居中"></a>2.1 多行文本垂直居中</h2><p>&emsp;&emsp;父元素<code>display:table</code>，子元素<code>vertical-align:middle</code>和<code>display:table-cell</code>。</p>
 <iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/dk210tfy/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
 
-<p><strong>方法1：flex布局</strong><br>&emsp;&emsp;父元素<code>display:flex</code>和<code>align-items:center</code>。</p>
+<h2 id="2-2-单行文本垂直居中"><a href="#2-2-单行文本垂直居中" class="headerlink" title="2.2 单行文本垂直居中"></a>2.2 单行文本垂直居中</h2><p>&emsp;&emsp;被定位元素<code>line-height=height</code>。</p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/jL7kof1h/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+<h2 id="2-3-块级元素垂直居中"><a href="#2-3-块级元素垂直居中" class="headerlink" title="2.3 块级元素垂直居中"></a>2.3 块级元素垂直居中</h2><p><strong>方法1：flex布局</strong> </p>
+<p>&emsp;&emsp;父元素<code>display:flex</code>和<code>align-items:center</code>。</p>
 <iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/heLtr6s4/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>
+
+<p><strong>方法2：position和top负margin=50% * height结合</strong><br>&emsp;&emsp;需要知道被定为元素高度。</p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/Lke1y6hc/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>  
+
+<p><strong>方法3：对于未知高度的块元素使用position、top、transform定位</strong> </p>
+<iframe scrolling="no" width="600" height="400" src="//jsfiddle.net/9steavfz/embedded/html,css,result/dark" frameborder="0" allowfullscreen></iframe>  
+
+
+
 
       
     </div>
@@ -545,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-position"><span class="nav-text">1.position</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-元素居中"><span class="nav-text">2.元素居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-行内元素"><span class="nav-text">2.1 行内元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-块级元素水平居中"><span class="nav-text">2.2 块级元素水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-块的宽度固定"><span class="nav-text">2.2.1 块的宽度固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-块的宽度不固定"><span class="nav-text">2.2.2 块的宽度不固定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-垂直居中"><span class="nav-text">2.垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-多行文本垂直居中"><span class="nav-text">2.1 多行文本垂直居中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-position"><span class="nav-text">1.position</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-元素居中"><span class="nav-text">2.元素居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-行内元素"><span class="nav-text">2.1 行内元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-块级元素水平居中"><span class="nav-text">2.2 块级元素水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-块的宽度固定"><span class="nav-text">2.2.1 块的宽度固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-块的宽度不固定"><span class="nav-text">2.2.2 块的宽度不固定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-垂直居中"><span class="nav-text">2.垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-多行文本垂直居中"><span class="nav-text">2.1 多行文本垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-单行文本垂直居中"><span class="nav-text">2.2 单行文本垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-块级元素垂直居中"><span class="nav-text">2.3 块级元素垂直居中</span></a></li></ol></li></ol></div>
             
 
           </div>
