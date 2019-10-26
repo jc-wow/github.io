@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jc-wow.github.io/2019/10/25/学习nigix/proxy.jpg">
 <meta property="og:image" content="https://jc-wow.github.io/2019/10/25/学习nigix/masterworker.jpg">
-<meta property="og:updated_time" content="2019-10-26T05:47:24.689Z">
+<meta property="og:updated_time" content="2019-10-26T05:50:53.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习nginx">
 <meta name="twitter:description" content="1.正向代理和反向代理&amp;emsp;&amp;emsp;正向代理隐藏了真实请求的客户端，服务端不知道真实的客户端是谁。比如我们可以通过VPN绕过GFW来访问被墙的网站。&amp;emsp;&amp;emsp;反向代理隐藏了真实的服务端，反向代理服务器将客户端的请转发到真实请求的服务器上。比如访问www.baidu.com时候，可以通过nginx反向代理服务器将客户端的请求转发到真实带有数据的服务器上。">
@@ -301,7 +301,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T13:47:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T13:50:53+08:00">
                 2019-10-26
               </time>
             
@@ -350,12 +350,8 @@
 <li><p>Master进程读取并验证配置文件nginx.conf;管理worker进程。  </p>
 </li>
 <li><p>每个Worker进程都维护一个线程，处理连接和请求；<strong>Worker进程的个数由配置文件<code>worker_process配置项来决定，一般和CPU个数相关</code>。</strong><br><img src="masterworker.jpg" alt> </p>
-<h2 id="3-2nginx的configuration文件"><a href="#3-2nginx的configuration文件" class="headerlink" title="3.2nginx的configuration文件"></a>3.2nginx的configuration文件</h2><p>  nginx.conf文件结构：</p>
-<pre><code>...              #全局块
-
-events {         #events块
-...
-}</code></pre><p>  http      #http块<br>  {</p>
+<h2 id="3-2nginx的configuration文件"><a href="#3-2nginx的configuration文件" class="headerlink" title="3.2nginx的configuration文件"></a>3.2nginx的configuration文件</h2><p>nginx.conf文件结构：  </p>
+<p>  …              #全局块<br>  events {         #events块<br>  …<br>  }<br>  http      #http块<br>  {</p>
 <pre><code>...   #http全局块
 server        #server块
 { 
@@ -373,7 +369,7 @@ server
 {
 ...
 }
-...     #http全局块</code></pre><p>  }</p>
+...     #http全局块</code></pre><p>  }  </p>
 </li>
 <li><p>全局块：配置影响nginx全局的指令。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等。</p>
 </li>
