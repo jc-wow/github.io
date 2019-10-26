@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="nginx,代理,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.正向代理和反向代理&amp;emsp;&amp;emsp;正向代理隐藏了真实请求的客户端，服务端不知道真实的客户端是谁。比如我们可以通过VPN绕过GFW来访问被墙的网站。&amp;emsp;&amp;emsp;反向代理隐藏了真实的服务端，反向代理服务器将客户端的请转发到真实请求的服务器上。比如访问www.baidu.com时候，可以通过nginx反向代理服务器将客户端的请求转发到真实带有数据的服务器上。   2.反向代理实现">
+<meta name="keywords" content="nginx,代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习nginx">
+<meta property="og:url" content="https://jc-wow.github.io/2019/10/25/学习nigix/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1.正向代理和反向代理&amp;emsp;&amp;emsp;正向代理隐藏了真实请求的客户端，服务端不知道真实的客户端是谁。比如我们可以通过VPN绕过GFW来访问被墙的网站。&amp;emsp;&amp;emsp;反向代理隐藏了真实的服务端，反向代理服务器将客户端的请转发到真实请求的服务器上。比如访问www.baidu.com时候，可以通过nginx反向代理服务器将客户端的请求转发到真实带有数据的服务器上。   2.反向代理实现">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://jc-wow.github.io/2019/10/25/学习nigix/proxy.jpg">
+<meta property="og:image" content="https://jc-wow.github.io/2019/10/25/学习nigix/masterworker.jpg">
+<meta property="og:updated_time" content="2019-10-26T04:15:05.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习nginx">
+<meta name="twitter:description" content="1.正向代理和反向代理&amp;emsp;&amp;emsp;正向代理隐藏了真实请求的客户端，服务端不知道真实的客户端是谁。比如我们可以通过VPN绕过GFW来访问被墙的网站。&amp;emsp;&amp;emsp;反向代理隐藏了真实的服务端，反向代理服务器将客户端的请转发到真实请求的服务器上。比如访问www.baidu.com时候，可以通过nginx反向代理服务器将客户端的请求转发到真实带有数据的服务器上。   2.反向代理实现">
+<meta name="twitter:image" content="https://jc-wow.github.io/2019/10/25/学习nigix/proxy.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jc-wow.github.io/2019/10/25/学习nigix/">
+
+
+
+
+
+  <title>学习nginx | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jc-wow.github.io/2019/10/25/学习nigix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="niffler">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习nginx</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-25T21:29:24+08:00">
+                2019-10-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T12:15:05+08:00">
+                2019-10-26
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-正向代理和反向代理"><a href="#1-正向代理和反向代理" class="headerlink" title="1.正向代理和反向代理"></a>1.正向代理和反向代理</h1><p>&emsp;&emsp;正向代理隐藏了真实请求的客户端，服务端不知道真实的客户端是谁。比如我们可以通过VPN绕过GFW来访问被墙的网站。<br>&emsp;&emsp;反向代理隐藏了真实的服务端，反向代理服务器将客户端的请转发到真实请求的服务器上。比如访问<code>www.baidu.com</code>时候，可以通过nginx反向代理服务器将客户端的请求转发到真实带有数据的服务器上。<br><img src="proxy.jpg" alt>  </p>
+<h1 id="2-反向代理实现"><a href="#2-反向代理实现" class="headerlink" title="2.反向代理实现"></a>2.反向代理实现</h1><ul>
+<li>一个负载均衡设备分发客户端请求，将客户端请求转发到空闲服务器  </li>
+<li>服务器将客户端请求的数据返回到负载均衡设备</li>
+<li>负载均衡将服务器返回的数据返回给客户端<br>&emsp;&emsp;<strong>客户端和负载均衡设备直接通信，用户做服务器域名解析时，解析到的ip时负载均衡设备的ip，而不是服务器的ip。</strong>  <h1 id="3-nginx反向代理"><a href="#3-nginx反向代理" class="headerlink" title="3.nginx反向代理"></a>3.nginx反向代理</h1><h2 id="3-1nginx的Master-Worker模式"><a href="#3-1nginx的Master-Worker模式" class="headerlink" title="3.1nginx的Master-Worker模式"></a>3.1nginx的Master-Worker模式</h2></li>
+<li>nginx启动后，其实就是在80端口启动了Socket服务进行监听，nginx涉及Master和Worker进程。  </li>
+<li>Master进程读取并验证配置文件nginx.conf;管理worker进程。  </li>
+<li>每个Worker进程都维护一个线程，处理连接和请求；<strong>Worker进程的个数由配置文件<code>worker_process配置项来决定，一般和CPU个数相关</code>。</strong><br><img src="masterworker.jpg" alt>  <h2 id="3-2nginx的configuration文件"><a href="#3-2nginx的configuration文件" class="headerlink" title="3.2nginx的configuration文件"></a>3.2nginx的configuration文件</h2>nginx.conf文件结构：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">...              #全局块</span><br><span class="line"></span><br><span class="line">events &#123;         #events块</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http      #http块</span><br><span class="line">&#123;</span><br><span class="line">    ...   #http全局块</span><br><span class="line">    server        #server块</span><br><span class="line">    &#123; </span><br><span class="line">        ...       #server全局块</span><br><span class="line">        location [PATTERN]   #location块</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        location [PATTERN] </span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    server</span><br><span class="line">    &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...     #http全局块</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">* 全局块：配置影响nginx全局的指令。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等。</span><br><span class="line">* events块：配置影响nginx服务器或与用户的网络连接。有每个进程的最大连接数，选取哪种事件驱动模型处理连接请求，是否允许同时接受多个网路连接，开启多个网络连接序列化等。</span><br><span class="line">* http块：可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。如文件引入，mime-type定义，日志自定义，是否使用sendfile传输文件，连接超时时间，单连接请求数等。</span><br><span class="line">* 配置虚拟主机的相关参数，一个http中可以有多个server。</span><br><span class="line">* 配置请求的路由，以及各种页面的处理情况。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>#定义 nginx 运行的用户和用户组<br>user www www;</p>
+<p>#nginx 进程数，建议设置为等于 CPU 总核心数。<br>worker_processes 8;</p>
+<p>#nginx 默认没有开启利用多核 CPU, 通过增加 worker_cpu_affinity 配置参数来充分利用多核 CPU 以下是 8 核的配置参数<br>worker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000;</p>
+<p>#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]<br>error_log /var/log/nginx/error.log info;</p>
+<p>#进程文件<br>pid /var/run/nginx.pid;</p>
+<p>#一个 nginx 进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值 ulimit -n）与 nginx 进程数相除，但是 nginx 分配请求并不均匀，所以建议与 ulimit -n 的值保持一致。<br>worker_rlimit_nofile 65535;</p>
+<p>#工作模式与连接数上限<br>events<br>{<br>    #参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll 模型是 Linux 2.6 以上版本内核中的高性能网络 I/O 模型，如果跑在 FreeBSD 上面，就用 kqueue 模型。<br>    #epoll 是多路复用 IO(I/O Multiplexing) 中的一种方式，但是仅用于 linux2.6 以上内核，可以大大提高 nginx 的性能<br>    use epoll;<br><br>    ############################################################################<br>    #单个后台 worker process 进程的最大并发链接数<br>    #事件模块指令，定义 nginx 每个进程最大连接数，默认 1024。最大客户连接数由 worker_processes 和 worker_connections 决定<br>    #即 max_client=worker_processes<em>worker_connections, 在作为反向代理时：max_client=worker_processes</em>worker_connections / 4<br>    worker_connections 65535;<br>    ############################################################################</p>
+<p>}</p>
+<p>#设定 http 服务器<br>http {<br>    include mime.types; #文件扩展名与文件类型映射表<br>    default_type application/octet-stream; #默认文件类型<br>    #charset utf-8; #默认编码<br><br>    server_names_hash_bucket_size 128; #服务器名字的 hash 表大小<br>    client_header_buffer_size 32k; #上传文件大小限制<br>    large_client_header_buffers 4 64k; #设定请求缓<br>    client_max_body_size 8m; #设定请求缓<br>    sendfile on; #开启高效文件传输模式，sendfile 指令指定 nginx 是否调用 sendfile 函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘 IO 重负载应用，可设置为 off，以平衡磁盘与网络 I/O 处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成 off。<br>    autoindex on; #开启目录列表访问，合适下载服务器，默认关闭。<br>    tcp_nopush on; #防止网络阻塞<br>    tcp_nodelay on; #防止网络阻塞<br><br>    ##连接客户端超时时间各种参数设置##<br>    keepalive_timeout  120;          #单位是秒，客户端连接时时间，超时之后服务器端自动关闭该连接 如果 nginx 守护进程在这个等待的时间里，一直没有收到浏览发过来 http 请求，则关闭这个 http 连接<br>    client_header_timeout 10;        #客户端请求头的超时时间<br>    client_body_timeout 10;          #客户端请求主体超时时间<br>    reset_timedout_connection on;    #告诉 nginx 关闭不响应的客户端连接。这将会释放那个客户端所占有的内存空间<br>    send_timeout 10;                 #客户端响应超时时间，在两次客户端读取操作之间。如果在这段时间内，客户端没有读取任何数据，nginx 就会关闭连接<br>    ################################<br><br>    #FastCGI 相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。<br>    fastcgi_connect_timeout 300;<br>    fastcgi_send_timeout 300;<br>    fastcgi_read_timeout 300;<br>    fastcgi_buffer_size 64k;<br>    fastcgi_buffers 4 64k;<br>    fastcgi_busy_buffers_size 128k;<br>    fastcgi_temp_file_write_size 128k;<br><br>    ###作为代理缓存服务器设置#######<br>    ###先写到 temp 再移动到 cache<br>    #proxy_cache_path /var/tmp/nginx/proxy_cache levels=1:2 keys_zone=cache_one:512m inactive=10m max_size=64m;<br>    ###以上 proxy_temp 和 proxy_cache 需要在同一个分区中<br>    ###levels=1:2 表示缓存级别，表示缓存目录的第一级目录是 1 个字符，第二级目录是 2 个字符 keys_zone=cache_one:128m 缓存空间起名为 cache_one 大小为 512m<br>    ###max_size=64m 表示单个文件超过 128m 就不缓存了  inactive=10m 表示缓存的数据，10 分钟内没有被访问过就删除<br>    #########end####################<br><br>    #####对传输文件压缩###########<br>    #gzip 模块设置<br>    gzip on; #开启 gzip 压缩输出<br>    gzip_min_length 1k; #最小压缩文件大小<br>    gzip_buffers 4 16k; #压缩缓冲区<br>    gzip_http_version 1.0; #压缩版本（默认 1.1，前端如果是 squid2.5 请使用 1.0）<br>    gzip_comp_level 2; #压缩等级，gzip 压缩比，1 为最小，处理最快；9 为压缩比最大，处理最慢，传输速度最快，也最消耗 CPU；<br>    gzip_types text/plain application/x-javascript text/css application/xml;<br>    #压缩类型，默认就已经包含 text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个 warn。<br>    gzip_vary on;<br>    ##############################<br><br>    #limit_zone crawler $binary_remote_addr 10m; #开启限制 IP 连接数的时候需要使用<br><br>    upstream blog.ha97.com {<br>        #upstream 的负载均衡，weight 是权重，可以根据机器配置定义权重。weigth 参数表示权值，权值越高被分配到的几率越大。<br>        server 192.168.80.121:80 weight=3;<br>        server 192.168.80.122:80 weight=2;<br>        server 192.168.80.123:80 weight=3;<br>    }<br><br>    #虚拟主机的配置<br>    server {<br>        #监听端口<br>        listen 80;<br><br>        #############https##################<br>        #listen 443 ssl;<br>        #ssl_certificate /opt/https/xxxxxx.crt;<br>        #ssl_certificate_key /opt/https/xxxxxx.key;<br>        #ssl_protocols SSLv3 TLSv1;<br>        #ssl_ciphers HIGH:!ADH:!EXPORT57:RC4+RSA:+MEDIUM;<br>        #ssl_prefer_server_ciphers on;<br>        #ssl_session_cache shared:SSL:2m;<br>        #ssl_session_timeout 5m;<br>        ####################################end<br><br>        #域名可以有多个，用空格隔开<br>        server_name <a href="http://www.ha97.com" target="_blank" rel="noopener">www.ha97.com</a> ha97.com;<br>        index index.html index.htm index.php;<br>        root /data/www/ha97;<br>        location ~ .<em>.(php|php5)?$ {<br>            fastcgi_pass 127.0.0.1:9000;<br>            fastcgi_index index.php;<br>            include fastcgi.conf;<br>        }<br><br>        #图片缓存时间设置<br>        location ~ .</em>.(gif|jpg|jpeg|png|bmp|swf)$ {<br>            expires 10d;<br>        }<br><br>        #JS 和 CSS 缓存时间设置<br>        location ~ .<em>.(js|css)?$ {<br>            expires 1h;<br>        }<br><br>        #日志格式设定<br>        log_format access ‘$remote_addr - $remote_user [$time_local] “$request” ‘ ‘$status $body_bytes_sent “$http_referer” ‘ ‘“$http_user_agent” $http_x_forwarded_for’;<br><br>        #定义本虚拟主机的访问日志<br>        access_log /var/log/nginx/ha97access.log access;<br><br>        #对 “/“ 启用反向代理<br>        location / {<br>            proxy_pass <a href="http://127.0.0.1:88" target="_blank" rel="noopener">http://127.0.0.1:88</a>;<br>            proxy_redirect off;<br>            proxy_set_header X-Real-IP $remote_addr;<br>            #后端的 Web 服务器可以通过 X-Forwarded-For 获取用户真实 IP<br>            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>            #以下是一些反向代理的配置，可选。<br>            proxy_set_header Host $host;<br>            client_max_body_size 10m; #允许客户端请求的最大单文件字节数<br>            client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，<br><br>            ##代理设置 以下设置是 nginx 和后端服务器之间通讯的设置##<br>            proxy_connect_timeout 90; #nginx 跟后端服务器连接超时时间（代理连接超时）<br>            proxy_send_timeout 90; #后端服务器数据回传时间（代理发送超时）<br>            proxy_read_timeout 90; #连接成功后，后端服务器响应时间（代理接收超时）<br>            proxy_buffering on;    #该指令开启从后端被代理服务器的响应内容缓冲 此参数开启后 proxy_buffers 和 proxy_busy_buffers_size 参数才会起作用<br>            proxy_buffer_size 4k;  #设置代理服务器（nginx）保存用户头信息的缓冲区大小<br>            proxy_buffers 4 32k;   #proxy_buffers 缓冲区，网页平均在 32k 以下的设置<br>            proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers*2）<br>            proxy_max_temp_file_size 2048m; #默认 1024m, 该指令用于设置当网页内容大于 proxy_buffers 时，临时文件大小的最大值。如果文件大于这个值，它将从 upstream 服务器同步地传递请求，而不是缓冲到磁盘<br>            proxy_temp_file_write_size 512k; 这是当被代理服务器的响应过大时 nginx 一次性写入临时文件的数据量。<br>            proxy_temp_path  /var/tmp/nginx/proxy_temp;    ##定义缓冲存储目录，之前必须要先手动创建此目录<br>            proxy_headers_hash_max_size 51200;<br>            proxy_headers_hash_bucket_size 6400;<br>            #######################################################<br>        }<br><br>        #设定查看 nginx 状态的地址<br>        location /nginxStatus {<br>            stub_status on;<br>            access_log on;<br>            auth_basic “nginxStatus”;<br>            auth_basic_user_file conf/htpasswd;<br>            #htpasswd 文件的内容可以用 apache 提供的 htpasswd 工具来产生。<br>        }<br><br>        #本地动静分离反向代理配置<br>        #所有 jsp 的页面均交由 tomcat 或 resin 处理<br>        location ~ .(jsp|jspx|do)?$ {<br>            proxy_set_header Host $host;<br>            proxy_set_header X-Real-IP $remote_addr;<br>            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>            proxy_pass <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>;<br>        }<br><br>        #所有静态文件由 nginx 直接读取不经过 tomcat 或 resin<br>        location ~ .</em>.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$<br>        { expires 15d; }<br><br>        location ~ .*.(js|css)?$<br>        { expires 1h; }<br>    }</p>
+<p>}</p>
+<p>作者：哆啦A梦的猜想<br>链接：<a href="https://juejin.im/post/5d81906c518825300a3ec7ca" target="_blank" rel="noopener">https://juejin.im/post/5d81906c518825300a3ec7ca</a></p>
+<pre><code></code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i>
+ nginx</a>
+          
+            <a href="/tags/代理/" rel="tag"><i class="fa fa-tag"></i>
+ 代理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/15/学习CSS布局/" rel="next" title="学习css布局">
+                <i class="fa fa-chevron-left"></i> 学习css布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/25/学习nginx/" rel="prev" title="学习nigix">
+                学习nigix <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitalk-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">niffler</p>
+              <p class="site-description motion-element" itemprop="description">we walk by faith, not by sight</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-正向代理和反向代理"><span class="nav-text">1.正向代理和反向代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-反向代理实现"><span class="nav-text">2.反向代理实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-nginx反向代理"><span class="nav-text">3.nginx反向代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1nginx的Master-Worker模式"><span class="nav-text">3.1nginx的Master-Worker模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2nginx的configuration文件"><span class="nav-text">3.2nginx的configuration文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">niffler</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'f3ae53c2d93b3fb23e16',
+          clientSecret: '93bebab19c5de4998d94ae64e72eced9a6788232',
+          repo: 'jc-wow.github.io',
+          owner: 'jc-wow',
+          admin: ['jc-wow'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
