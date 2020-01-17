@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="JavaScript,算法,">
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="we walk by faith, not by sight">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://jc-wow.github.io/tags/index.html">
+<meta name="description" content="&amp;emsp;&amp;emsp;做leetcode题目的时候，遇到了一道用并查集（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。">
+<meta name="keywords" content="JavaScript,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习算法之——并查集">
+<meta property="og:url" content="https://jc-wow.github.io/2020/01/13/学习算法之——并查集/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="we walk by faith, not by sight">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;做leetcode题目的时候，遇到了一道用并查集（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-19T11:59:57.852Z">
+<meta property="og:image" content="https://jc-wow.github.io/images/leetcode1319.jpg">
+<meta property="og:updated_time" content="2020-01-17T02:49:04.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="we walk by faith, not by sight">
+<meta name="twitter:title" content="学习算法之——并查集">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;做leetcode题目的时候，遇到了一道用并查集（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。">
+<meta name="twitter:image" content="https://jc-wow.github.io/images/leetcode1319.jpg">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://jc-wow.github.io/tags/">
+  <link rel="canonical" href="https://jc-wow.github.io/2020/01/13/学习算法之——并查集/">
 
 
 
 
 
-  <title>tags | </title>
+  <title>学习算法之——并查集 | </title>
   
 
 
@@ -240,40 +243,281 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jc-wow.github.io/2020/01/13/学习算法之——并查集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="niffler">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content>
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 6 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/JavaScript/" style="font-size: 30px; color: #111">JavaScript</a> <a href="/tags/css/" style="font-size: 12px; color: #ccc">css</a> <a href="/tags/nginx/" style="font-size: 12px; color: #ccc">nginx</a> <a href="/tags/代理/" style="font-size: 12px; color: #ccc">代理</a> <a href="/tags/算法/" style="font-size: 12px; color: #ccc">算法</a> <a href="/tags/读书笔记/" style="font-size: 30px; color: #111">读书笔记</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">学习算法之——并查集</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T22:06:51+08:00">
+                2020-01-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-17T10:49:04+08:00">
+                2020-01-17
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>&emsp;&emsp;做leetcode题目的时候，遇到了一道用<a href="https://baike.baidu.com/item/%E5%B9%B6%E6%9F%A5%E9%9B%86/9388442?fr=aladdin" target="_blank" rel="noopener">并查集</a>（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。  </p>
+<a id="more"></a>  
+<p><a href="https://leetcode-cn.com/problems/number-of-operations-to-make-network-connected/" target="_blank" rel="noopener"><strong>LeetCode 1319.连通网络的操作次数</strong></a><br>原题目：<br>&emsp;&emsp;用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。<br>&emsp;&emsp;网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。<br>&emsp;&emsp;给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。<br><img src="/images/leetcode1319.jpg" alt="示例1"><br>思路：n台计算机如果连成网络的话则最少需要n-1条线缆，本题求的是使计算机相连所需的最少操作次数。那么只需要在connections给出的点集中找出已经已经连通成网络但是不构成环的点的个数，记为coned，则最少操作次数为n - coned - 1。<br>未优化并查集解法如下：</p>
+<pre><code>```javascript   
+    var makeConnected = function(n, connections) {
+    if (connections.length + 1 &lt; n) return -1;
+    this.parent = new Array(n).fill(-1);
+    this.rank = new Array(n).fill(0);
+    this.num = n;
+    for (let i = 0; i &lt; connections.length; i++) {
+        let x = connections[i][0];
+        let y = connections[i][1];
+        union(x, y)
+    }
+    let cnt = this.num - 1
+    return cnt;
+};
+
+function find(x) {
+    let x_root = x;
+    while (this.parent[x_root] !== -1) {
+        x_root = this.parent[x_root];
+    }   
+    return x_root;
+}
+
+function union(x, y) {
+    let x_root = find(x);
+    let y_root = find(y);
+    if (x_root === y_root) {
+        return;
+    } else {
+        this.parent[x_root] = y_root;
+        this.num--;
+    }
+}
+```  </code></pre><p>路径压缩优化：  </p>
+<pre><code>```javascript  
+var makeConnected = function(n, connections) {
+if (connections.length + 1 &lt; n) return -1;
+this.parent = new Array(n).fill(-1);
+this.rank = new Array(n).fill(0);
+this.num = n;
+for (let i = 0; i &lt; connections.length; i++) {
+    let x = connections[i][0];
+    let y = connections[i][1];
+    union(x, y)
+}
+let cnt = this.num - 1
+return cnt;
+};
+
+function find(x) {
+    let x_root = x;
+    while (this.parent[x_root] !== -1) {
+        x_root = this.parent[x_root];
+    }
+    // 路径压缩
+    while (x !== x_root) {
+        let tmp = this.parent[x];
+        tmp = x_root;
+        x = tmp;
+    }    
+    return x_root;
+    }
+
+function union(x, y) {
+    let x_root = find(x);
+    let y_root = find(y);
+    if (x_root === y_root) {
+        return;
+    } else {
+        this.parent[x_root] = y_root;
+    }
+}
+```  </code></pre><p>按秩优化：  </p>
+<pre><code>```javascript
+var makeConnected = function(n, connections) {
+if (connections.length + 1 &lt; n) return -1;
+this.parent = new Array(n).fill(-1);
+this.rank = new Array(n).fill(0);
+this.num = n;
+for (let i = 0; i &lt; connections.length; i++) {
+    let x = connections[i][0];
+    let y = connections[i][1];
+    union(x, y)
+}
+let cnt = this.num - 1
+return cnt;
+};
+
+function find(x) {
+    let x_root = x;
+    while (this.parent[x_root] !== -1) {
+        x_root = this.parent[x_root];
+    }
+    return x_root;
+    }
+
+function union(x, y) {
+    let x_root = find(x);
+    let y_root = find(y);
+    if (x_root === y_root) {
+        return;
+    } else {
+        // 按秩
+        if (this.rank[x_root] &gt; this.rank[y_root]) {
+            this.parent[y_root] = x_root;
+        } else if (this.rank[y_root] &gt; this.rank[x_root]) {
+            this.parent[x_root] = y_root;
+        } else {
+            this.parent[x_root] = y_root;
+            this.rank[y_root]++;
+        }
+        this.num--;
+    }
+}
+```  </code></pre><p>参考：  </p>
+<ul>
+<li><a href="https://www.bilibili.com/video/av38498175?from=search&seid=5593810890169044402" target="_blank" rel="noopener">【算法】并查集（Disjoint Set）[共3讲]</a>  </li>
+<li>数据结构与算法分析：C语言描述</li>
+</ul>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i>
+ JavaScript</a>
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i>
+ 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/25/学习nigix/" rel="next" title="学习nginx">
+                <i class="fa fa-chevron-left"></i> 学习nginx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
