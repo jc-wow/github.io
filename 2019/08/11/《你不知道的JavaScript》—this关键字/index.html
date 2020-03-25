@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。  123456789101112131415//非严格模式function foo() &amp;#123;    console.log(this.a);&amp;#125;var a = 2;foo(); // 2//严格模式function foo() &amp;#123;    &quot;use str">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-25T08:39:49.029Z">
+<meta property="og:updated_time" content="2020-03-25T08:40:23.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《你不知道的JavaScript》——this关键字">
 <meta name="twitter:description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。  123456789101112131415//非严格模式function foo() &amp;#123;    console.log(this.a);&amp;#125;var a = 2;foo(); // 2//严格模式function foo() &amp;#123;    &quot;use str">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-25T16:39:49+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-25T16:40:23+08:00">
                 2020-03-25
               </time>
             
@@ -375,9 +375,9 @@
 <h2 id="0-1-setTimeout和setInterval中this的指向"><a href="#0-1-setTimeout和setInterval中this的指向" class="headerlink" title="0.1 setTimeout和setInterval中this的指向"></a>0.1 setTimeout和setInterval中this的指向</h2><p>还有一个问题就是在setTimeout和setInterval中this的指向，因为setTimeout和setInterval其实是window对象的方法，可以看成window.setTimeout()和window.setInterval()，因此this上下文环境就是window对象，并且指向window对象。<br>解决方法：  </p>
 <blockquote>
 <ol>
-<li>将this需要执行的上下文保存下来，<code>let that = this</code>；</li>
-<li>硬绑定；</li>
-<li>箭头函数，<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">箭头函数不会创建自己的this,它只会从自己的作用域链的上一层继承this。</a>；</li>
+<li>将this需要执行的上下文保存下来，<code>let that = this</code></li>
+<li>硬绑定</li>
+<li>箭头函数，<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">箭头函数不会创建自己的this,它只会从自己的作用域链的上一层继承this</a></li>
 </ol>
 </blockquote>
 
