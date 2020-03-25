@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,读书笔记,">
+  <meta name="keywords" content="读书笔记,JavaScript,">
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。  123456789101112131415//非严格模式function foo() &amp;#123;    console.log(this.a);&amp;#125;var a = 2;foo(); // 2//严格模式function foo() &amp;#123;    &quot;use str">
-<meta name="keywords" content="JavaScript,读书笔记">
+<meta name="keywords" content="读书笔记,JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《你不知道的JavaScript》——this关键字">
 <meta property="og:url" content="https://jc-wow.github.io/2019/08/11/《你不知道的JavaScript》—this关键字/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。  123456789101112131415//非严格模式function foo() &amp;#123;    console.log(this.a);&amp;#125;var a = 2;foo(); // 2//严格模式function foo() &amp;#123;    &quot;use str">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-25T08:40:23.198Z">
+<meta property="og:updated_time" content="2020-03-25T08:40:57.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《你不知道的JavaScript》——this关键字">
 <meta name="twitter:description" content="1.绑定规则1.1 默认绑定默认绑定是最常用的函数调用类型——独立函数调用。这条规则是无法应用其他规则时的默认规则。  123456789101112131415//非严格模式function foo() &amp;#123;    console.log(this.a);&amp;#125;var a = 2;foo(); // 2//严格模式function foo() &amp;#123;    &quot;use str">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-25T16:40:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-25T16:40:57+08:00">
                 2020-03-25
               </time>
             
@@ -371,7 +371,7 @@
 <li>如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到 undefined，否则绑定到 全局对象.var bar = foo()</li>
 </ol>
 </blockquote>
-<h1 id="0-总结"><a href="#0-总结" class="headerlink" title="0.总结"></a>0.总结</h1><p>总得来说，this关键字总是指向运行时的上下文环境。<br>运行时的上下文环境，跟this在什么地方定义的没有关系。不好理解的话下面一篇文章通俗易懂解释了this指向的问题，有一句话是这样说的：<br><em><a href="http://davidshariff.com/blog/javascript-this-keyword/#first-article" target="_blank" rel="noopener">Whenever a function is called, we must look at the immediate left side of the brackets / parentheses “()”. If on the left side of the parentheses we can see a reference, then the value of “this” passed to the function call is exactly of which that object belongs to, otherwise it is the global object.</a></em></p>
+<h1 id="0-总结"><a href="#0-总结" class="headerlink" title="0.总结"></a>0.总结</h1><p>总得来说，this关键字总是指向运行时的上下文环境。<br>运行时的上下文环境，跟this在什么地方定义的没有关系。不好理解的话下面一篇文章通俗易懂解释了this指向的问题，其中一句话是这样说的：<br><em><a href="http://davidshariff.com/blog/javascript-this-keyword/#first-article" target="_blank" rel="noopener">Whenever a function is called, we must look at the immediate left side of the brackets / parentheses “()”. If on the left side of the parentheses we can see a reference, then the value of “this” passed to the function call is exactly of which that object belongs to, otherwise it is the global object.</a></em></p>
 <h2 id="0-1-setTimeout和setInterval中this的指向"><a href="#0-1-setTimeout和setInterval中this的指向" class="headerlink" title="0.1 setTimeout和setInterval中this的指向"></a>0.1 setTimeout和setInterval中this的指向</h2><p>还有一个问题就是在setTimeout和setInterval中this的指向，因为setTimeout和setInterval其实是window对象的方法，可以看成window.setTimeout()和window.setInterval()，因此this上下文环境就是window对象，并且指向window对象。<br>解决方法：  </p>
 <blockquote>
 <ol>
@@ -397,11 +397,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i>
- JavaScript</a>
-          
             <a href="/tags/读书笔记/" rel="tag"><i class="fa fa-tag"></i>
  读书笔记</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i>
+ JavaScript</a>
           
         </div>
       
