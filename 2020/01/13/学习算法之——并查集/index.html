@@ -88,7 +88,7 @@
 <meta property="og:description" content="&amp;emsp;&amp;emsp;做leetcode题目的时候，遇到了一道用并查集（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jc-wow.github.io/images/leetcode1319.png">
-<meta property="og:updated_time" content="2020-03-25T08:49:53.831Z">
+<meta property="og:updated_time" content="2020-03-26T01:22:51.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习算法之——并查集">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;做leetcode题目的时候，遇到了一道用并查集（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-25T16:49:53+08:00">
-                2020-03-25
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-26T09:22:51+08:00">
+                2020-03-26
               </time>
             
           </span>
@@ -336,39 +336,8 @@
       
         <p>&emsp;&emsp;做leetcode题目的时候，遇到了一道用<a href="https://baike.baidu.com/item/%E5%B9%B6%E6%9F%A5%E9%9B%86/9388442?fr=aladdin" target="_blank" rel="noopener">并查集</a>（Union-Find）解决问题的方法，顺便记录下学习并查集算法的过程。  </p>
 <a id="more"></a>  
-<p><a href="https://leetcode-cn.com/problems/number-of-operations-to-make-network-connected/" target="_blank" rel="noopener"><strong>LeetCode 1319.连通网络的操作次数</strong></a><br>原题目：<br>用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。<br>网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。<br>给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。<br><img src="/images/leetcode1319.png" alt="示例1"><br>思路：n台计算机如果连成网络的话则最少需要n-1条线缆，本题求的是使计算机相连所需的最少操作次数。那么只需要在connections给出的点集中找出已经已经连通成网络但是不构成环的点的个数，记为coned，则最少操作次数为n - coned - 1。<br>未优化并查集解法如下：</p>
-<pre><code>var makeConnected = function(n, connections) {
-    if (connections.length + 1 &lt; n) return -1;
-    this.parent = new Array(n).fill(-1);
-    this.rank = new Array(n).fill(0);
-    this.num = n;
-    for (let i = 0; i &lt; connections.length; i++) {
-        let x = connections[i][0];
-        let y = connections[i][1];
-        union(x, y)
-    }
-    let cnt = this.num - 1
-    return cnt;
-};
-
-function find(x) {
-    let x_root = x;
-    while (this.parent[x_root] !== -1) {
-        x_root = this.parent[x_root];
-    }   
-    return x_root;
-}
-
-function union(x, y) {
-    let x_root = find(x);
-    let y_root = find(y);
-    if (x_root === y_root) {
-        return;
-    } else {
-        this.parent[x_root] = y_root;
-        this.num--;
-    }
-}</code></pre><p>路径压缩优化：  </p>
+<p><a href="https://leetcode-cn.com/problems/number-of-operations-to-make-network-connected/" target="_blank" rel="noopener"><strong>LeetCode 1319.连通网络的操作次数</strong></a><br>原题目：<br>用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。<br>网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。<br>给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。<br><img src="/images/leetcode1319.png" alt="示例1"><br>思路：n台计算机如果连成网络的话则最少需要n-1条线缆，本题求的是使计算机相连所需的最少操作次数。那么只需要在connections给出的点集中找出已经已经连通成网络但是不构成环的点的个数，记为coned，则最少操作次数为n - coned - 1。<br>未优化并查集解法如下：<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> makeConnected = <span class="function"><span class="keyword">function</span>(<span class="params">n, connections</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (connections.length + <span class="number">1</span> &lt; n) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">this</span>.parent = <span class="keyword">new</span> <span class="built_in">Array</span>(n).fill(<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">this</span>.rank = <span class="keyword">new</span> <span class="built_in">Array</span>(n).fill(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">this</span>.num = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; connections.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> x = connections[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">let</span> y = connections[i][<span class="number">1</span>];</span><br><span class="line">        union(x, y)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> cnt = <span class="keyword">this</span>.num - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x_root = x;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">this</span>.parent[x_root] !== <span class="number">-1</span>) &#123;</span><br><span class="line">        x_root = <span class="keyword">this</span>.parent[x_root];</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> x_root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">union</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x_root = find(x);</span><br><span class="line">    <span class="keyword">let</span> y_root = find(y);</span><br><span class="line">    <span class="keyword">if</span> (x_root === y_root) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.parent[x_root] = y_root;</span><br><span class="line">        <span class="keyword">this</span>.num--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>路径压缩优化：  </p>
 <pre><code>var makeConnected = function(n, connections) {
     if (connections.length + 1 &lt; n) return -1;
     this.parent = new Array(n).fill(-1);
