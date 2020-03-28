@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jc-wow.github.io/images/preorder-inorder.png">
 <meta property="og:image" content="https://jc-wow.github.io/images/preorder-inorder.png">
-<meta property="og:updated_time" content="2020-03-28T03:01:18.388Z">
+<meta property="og:updated_time" content="2020-03-28T03:22:14.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉树的构造">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;这次纪录的是LeetCode105.从前序与中旬遍历序列构造二叉树和LeetCode.106从中序与后序遍历序列构造二叉树。">
@@ -311,7 +311,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-28T11:01:18+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-28T11:22:14+08:00">
                 2020-03-28
               </time>
             
@@ -414,6 +414,12 @@
         <span class="keyword">const</span> root = <span class="keyword">new</span> TreeNode(element);
         <span class="keyword">const</span> rootIndex = inorder.indexOf(element);
         <span class="comment">// 此处先递归右树再递归左树</span>
+        <span class="comment">// 若想先递归左树再递归右树，则要先找准postorder</span>
+        <span class="comment">//const element = postorder[postorder.length - 1];</span>
+        <span class="comment">//const root = new TreeNode(element);</span>
+        <span class="comment">//const rootIndex = inorder.indexOf(element);</span>
+        <span class="comment">//root.left = helper(inorder.slice(rootIndex + 1, inorder.length), postorder.slice(0, i));</span>
+        <span class="comment">//root.right = helper(inorder.slice(0, rootIndex), postorder(rootIndex, postorder.length));</span>
         root.right = helper(inorder.slice(rootIndex + <span class="number">1</span>, inorder.length), postorder);
         root.left = helper(inorder.slice(<span class="number">0</span>, rootIndex), postorder);
         <span class="keyword">return</span> root;
